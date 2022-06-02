@@ -1,0 +1,5 @@
+TODO
+
+img in db for medicine
+add image for medicines
+bug with appointments
