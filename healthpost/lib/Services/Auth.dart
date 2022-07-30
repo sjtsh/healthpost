@@ -7,8 +7,6 @@ import '../global.dart';
 
 class Auth {
   Future<String> signIn(String username, String password) async {
-  print(
-    {"email": username, "password": password});
     Response res = await http.post(
       Uri.parse("$localhost/signin/"),
       headers: {"content-type": "application/json"},
@@ -27,6 +25,7 @@ class Auth {
         email = parsable["email"];
         address = parsable["address"];
         phone = parsable["phone"];
+        admin = parsable["admin"];
         return username;
       }
     }

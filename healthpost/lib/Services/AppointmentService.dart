@@ -8,6 +8,18 @@ import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
 class AppointmentService {
+  Future<List<Appointment>> getAllAppointments() async {
+    Response res = await http.get(
+      Uri.parse("$localhost/appointment/"),
+    );
+    List<dynamic> parsable = jsonDecode(res.body);
+    return parsable
+        .map((e) => Appointment.fromJson(e))
+        .toList()
+        .reversed
+        .toList();
+  }
+
   Future<List<Appointment>> getAppointments() async {
     Response res = await http.get(
       Uri.parse("$localhost/appointment/$id/"),

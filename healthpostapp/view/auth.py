@@ -12,7 +12,7 @@ def signIn(request):
     password = request.data["password"]
     try:
         user = User.objects.get(email=email, password=password)
-        return Response({"id": user.id, "email": user.email, "address": user.address, "phone": user.phone, "name": user.name})
+        return Response({"id": user.id, "email": user.email, "address": user.address, "phone": user.phone, "name": user.name,  "admin": user.admin})
     except:
         return Response(False)
 

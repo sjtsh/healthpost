@@ -7,6 +7,7 @@ class User(models.Model):
     password = models.TextField()
     address = models.TextField()
     phone = models.TextField()
+    admin = models.BooleanField(default=False)
 
 
 class Ambulance(models.Model):
@@ -16,12 +17,18 @@ class Ambulance(models.Model):
     phone = models.TextField()
     available = models.BooleanField()
 
+class Bed(models.Model):
+    hospital = models.TextField()
+    img = models.TextField()
+    name = models.TextField()
+    available = models.IntegerField()
+    phone = models.TextField()
+    category = models.IntegerField()
 
 class Blood(models.Model):
     name = models.TextField()
     available = models.IntegerField()
     phone = models.TextField()
-
 
 class Doctor(models.Model):
     name = models.TextField()
