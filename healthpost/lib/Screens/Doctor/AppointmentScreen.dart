@@ -390,7 +390,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 if (noteController.text != "" && startTime != null) {
                   DateTime mydate = startDate!.add(Duration(hours: startTime!));
                   await AppointmentService()
-                      .postAppointment(mydate, widget.doctor);
+                      .postAppointment(mydate, widget.doctor, noteController.text);
                   Navigator.pop(context);
                 }
               },

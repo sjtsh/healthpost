@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<List> bottomNavItems = admin
       ? [
-          [Icons.people_alt_outlined, "Admin", "All of the appointments"],
+          [Icons.people_alt_outlined, "Admin", "Welcome Admin"],
         ]
       : [
           [Icons.people_alt_outlined, "Doctor", "Take Appointments"],
@@ -66,9 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   pageController.animateToPage(i,
                       duration: Duration(milliseconds: 200),
                       curve: Curves.easeIn);
-                  setState(() {
-                    this.i = i;
-                  });
                 },
               ),
         body: Column(

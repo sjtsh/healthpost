@@ -13,7 +13,7 @@ def getAppointment(request, pk):
     returnable = []
     for i in appointments:
         aDict = {"id": i.id, "doctor": i.doctor.name,  "specialist": i.doctor.specialist,
-                 "img": i.doctor.img, "startTime": i.startTime}
+                 "img": i.doctor.img, "startTime": i.startTime, "note": i.note}
         returnable.append(aDict)
     return Response(returnable)
 
@@ -21,7 +21,7 @@ def getAppointment(request, pk):
 @api_view(['POST'])
 def postAppointment(request, pk):
     Appointment.objects.create(startTime=request.data["startTime"], user=User.objects.get(
-        id=pk), doctor=Doctor.objects.get(id=request.data["doctor"]))
+        id=pk), doctor=Doctor.objects.get(id=request.data["doctor"]), note=request.data["note"])
     return Response(True)
 
 
@@ -30,7 +30,7 @@ def getAppointments(request):
     appointments = Appointment.objects.all()
     returnable = []
     for i in appointments:
-        aDict = {"id": i.id, "doctor": i.doctor.name,  "specialist": i.doctor.specialist,
-                 "img": i.doctor.img, "startTime": i.startTime}
+        aDict = {"id": i.id, "startTime": i.startTime, "userUserName": i.user.name, "userName": i.user.name,  "userEmail": i.user.email, "userAddress": i.user.address, "userPhone": i.user.phone,
+                 "doctorImg": i.doctor.img, "doctorName": i.doctor.name, "doctorSpecialist": i.doctor.specialist, "doctorPhone": i.doctor.phone, "doctorAvailable": i.doctor.available, "note": i.note}
         returnable.append(aDict)
     return Response(returnable)

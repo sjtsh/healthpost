@@ -3,8 +3,9 @@ class Appointment {
   String doctor;
   String specialist;
   String img;
+  String note;
 
-  Appointment(this.startTime, this.doctor, this.specialist, this.img);
+  Appointment(this.startTime, this.doctor, this.specialist, this.img, this.note);
 
   factory Appointment.fromJson(Map<String, dynamic> json) {
     return Appointment(
@@ -12,6 +13,7 @@ class Appointment {
       json["doctor"],
       json["specialist"],
       json["img"],
+      json["note"],
     );
   }
 }

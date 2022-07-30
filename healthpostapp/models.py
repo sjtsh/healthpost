@@ -17,6 +17,7 @@ class Ambulance(models.Model):
     phone = models.TextField()
     available = models.BooleanField()
 
+
 class Bed(models.Model):
     hospital = models.TextField()
     img = models.TextField()
@@ -25,10 +26,12 @@ class Bed(models.Model):
     phone = models.TextField()
     category = models.IntegerField()
 
+
 class Blood(models.Model):
     name = models.TextField()
     available = models.IntegerField()
     phone = models.TextField()
+
 
 class Doctor(models.Model):
     name = models.TextField()
@@ -42,6 +45,8 @@ class Appointment (models.Model):
     startTime = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    note = models.TextField(
+        default="Hope you are having a nice day doctor\nThis is for my general monthly checkup")
 
 
 class Medicine(models.Model):

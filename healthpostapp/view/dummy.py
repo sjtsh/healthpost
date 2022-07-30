@@ -11,8 +11,10 @@ from healthpostapp.models import *
 
 @api_view(['GET'])
 def insertDummy(request):
-    User.objects.create(email="test@gmail.com", password="user",
+    User.objects.create(email="test@gmail.com", password="user", name="Dev Yadav",
                         address="bhaktapur", phone="9812345678")
+    User.objects.create(email="admin@gmail.com", password="admin", name="Dev Yadav",
+                        address="kathmandu", phone="9801234567", admin=True)
     user = User.objects.get(id=1)
     Ambulance.objects.create(hospital="Friendship Community Hospital",
                              lat=27.727510239064642, lng=85.34540357152348, phone="01-440201", available=True)
@@ -59,8 +61,8 @@ def insertDummy(request):
     Doctor.objects.create(name="Dr. Anna Sharma", specialist="Diagnostic Medicine",
                           img="https://www.nepalmediciti.com/UploadedImages/Dr.%20Anna%20Sharma.JPG", phone="01-4221119", available=True)
     userNew = User.objects.create(
-        email="user1@gmail.com", password="user", address="kathmandu", phone="9812345678")
-    userNew = User.objects.get(email = "user1@gmail.com")
+        email="user1@gmail.com", password="user", address="kathmandu", phone="9812345678", name="Yadav Dev", )
+    userNew = User.objects.get(email="user1@gmail.com")
     for i in Doctor.objects.all():
         for single_date in daterange(datetime(2022, 6, 2), datetime(2022, 6, 10)):
             timeList = [10, 11, 2, 3, 5]
@@ -70,7 +72,7 @@ def insertDummy(request):
 
     for i in Doctor.objects.all():
         for single_date in daterange(datetime(2022, 5, 2), datetime(2022, 10, 10)):
-            if single_date.weekday() == 1 or single_date.weekday() == 6 :
+            if single_date.weekday() == 1 or single_date.weekday() == 6:
                 Offday.objects.create(datetime=single_date, doctor=i)
     for i in Doctor.objects.all():
         Offday.objects.create(datetime=datetime(2022, 6, 12), doctor=i)

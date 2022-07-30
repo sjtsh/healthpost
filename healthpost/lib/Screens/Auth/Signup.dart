@@ -25,7 +25,9 @@ class _SignupState extends State<Signup> {
       child: Scaffold(
         backgroundColor: Color(0xfff2f2f2),
         body: ListView(children: [
-        SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Text(
             "Sign Up,\nYour Personal Health Post",
             style: TextStyle(
@@ -34,7 +36,9 @@ class _SignupState extends State<Signup> {
                 color: Color(0xff435244)),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Divider(
             color: Color(0xff4FA5D2),
             thickness: 3,
@@ -48,7 +52,8 @@ class _SignupState extends State<Signup> {
                 errorText: nameController.text == "" && isValidated
                     ? "Name cannot be empty"
                     : null,
-                hintStyle: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 16),
+                hintStyle: TextStyle(
+                    color: Colors.black.withOpacity(0.5), fontSize: 16),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.black.withOpacity(0.5),
@@ -66,7 +71,8 @@ class _SignupState extends State<Signup> {
                 errorText: emailController.text == "" && isValidated
                     ? "Email cannot be empty"
                     : null,
-                hintStyle: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 16),
+                hintStyle: TextStyle(
+                    color: Colors.black.withOpacity(0.5), fontSize: 16),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.black.withOpacity(0.5),
@@ -84,7 +90,8 @@ class _SignupState extends State<Signup> {
                 errorText: phoneController.text == "" && isValidated
                     ? "Phone cannot be empty"
                     : null,
-                hintStyle: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 16),
+                hintStyle: TextStyle(
+                    color: Colors.black.withOpacity(0.5), fontSize: 16),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.black.withOpacity(0.5),
@@ -102,7 +109,8 @@ class _SignupState extends State<Signup> {
                 errorText: addressController.text == "" && isValidated
                     ? "Address cannot be empty"
                     : null,
-                hintStyle: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 16),
+                hintStyle: TextStyle(
+                    color: Colors.black.withOpacity(0.5), fontSize: 16),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.black.withOpacity(0.5),
@@ -121,7 +129,8 @@ class _SignupState extends State<Signup> {
                 errorText: passwordController.text == "" && isValidated
                     ? "Password cannot be empty"
                     : null,
-                hintStyle: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 16),
+                hintStyle: TextStyle(
+                    color: Colors.black.withOpacity(0.5), fontSize: 16),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.black.withOpacity(0.5),
@@ -140,7 +149,8 @@ class _SignupState extends State<Signup> {
                 errorText: passwordController.text != confirmController.text
                     ? "Passwords do not match"
                     : null,
-                hintStyle: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 16),
+                hintStyle: TextStyle(
+                    color: Colors.black.withOpacity(0.5), fontSize: 16),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.black.withOpacity(0.5),
@@ -172,13 +182,21 @@ class _SignupState extends State<Signup> {
                           emailController.text,
                           phoneController.text,
                           addressController.text)
-                      .then((value) {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      .then((value) async {
+                    await Navigator.push(context,
+                        MaterialPageRoute(builder: (_) {
                       return HomeScreen();
                     }));
+                    passwordController.clear();
+                    confirmController.clear();
+                    isValidated = false;
+                    setState(() {});
                   }).onError((error, stackTrace) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(error.toString())));
+                    passwordController.clear();
+                    confirmController.clear();
+                    isValidated = false;
                   });
                 }
               },
@@ -191,7 +209,8 @@ class _SignupState extends State<Signup> {
           Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
             child: Container(
-            decoration: BoxDecoration(border: Border.all(color: Color(0xff4FA5D2))),
+              decoration:
+                  BoxDecoration(border: Border.all(color: Color(0xff4FA5D2))),
               child: MaterialButton(
                 minWidth: double.infinity,
                 height: 60,
@@ -206,7 +225,9 @@ class _SignupState extends State<Signup> {
               ),
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
         ]),
       ),
     );

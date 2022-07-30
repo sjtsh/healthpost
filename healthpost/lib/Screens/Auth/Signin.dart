@@ -23,7 +23,7 @@ class _SigninState extends State<Signin> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: SizedBox(
-          height: MediaQuery.of(context).size.height-100,
+            height: MediaQuery.of(context).size.height - 100,
             child: Column(
               children: [
                 Expanded(
@@ -90,10 +90,10 @@ class _SigninState extends State<Signin> {
                                 controller: passwordController,
                                 obscureText: true,
                                 decoration: InputDecoration(
-                                  errorText:
-                                      isValidation && passwordController.text == ""
-                                          ? "Password cannot be empty"
-                                          : null,
+                                  errorText: isValidation &&
+                                          passwordController.text == ""
+                                      ? "Password cannot be empty"
+                                      : null,
                                   hintText: "Password",
                                   border: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -142,16 +142,22 @@ class _SigninState extends State<Signin> {
                             if (emailController.text != "" &&
                                 passwordController.text != "") {
                               Auth()
-                                  .signIn(
-                                      emailController.text, passwordController.text)
-                                  .then((value) {
-                                Navigator.push(context,
+                                  .signIn(emailController.text,
+                                      passwordController.text)
+                                  .then((value) async {
+                                await Navigator.push(context,
                                     MaterialPageRoute(builder: (_) {
                                   return HomeScreen();
                                 }));
+                                passwordController.clear();
+                                isValidation = false;
+                                setState(() {});
                               }).onError((error, stackTrace) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text(error.toString())));
+                                passwordController.clear();
+                                isValidation = false;
+                                setState(() {});
                               });
                             }
                           },
@@ -164,14 +170,15 @@ class _SigninState extends State<Signin> {
                       Expanded(child: Container()),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) {
                             return Signup();
                           }));
                         },
                         child: Text(
                           "Create an account",
-                          style:
-                              TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 22),
                         ),
                       ),
                       SizedBox(
