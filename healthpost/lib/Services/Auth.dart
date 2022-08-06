@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
 import '../global.dart';
+import 'package:healthpost/data.dart';
 
 class Auth {
   Future<String> signIn(String username, String password) async {
